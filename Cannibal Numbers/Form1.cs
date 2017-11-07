@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cannibal_Numbers
@@ -22,24 +15,43 @@ namespace Cannibal_Numbers
             // Declare variables
             String[] input = textBox_in.Text.Split(),
                 query_in = textBox_query.Text.Split();
-            String output = "Press \"Go!\" after filling out the other boxes";
+            String output = "";
             int[] query_out = new int[query_in.Length];
 
-            // Todo: parse input and check if next number can be "eaten"
-            for (int i = 0; i < input.Length; i++)
-            {
-
-            }
-
             // Parse query input
-            // Todo: Check numbers from input after they have eaten and see if they meet the requirements
             for (int j = 0; j < query_in.Length; j++)
             {
                 query_out[j] = int.Parse(query_in[j]);
+
+                for (int i = 0; i < input.Length; i++)
+                {
+                    // Parse input and check if next number can be "eaten"
+                    for (int h = 0; h < input.Length - i - 1; h++)
+                    {
+                        if (int.Parse(input[i]) >= int.Parse(input[i + 1]))
+                        {
+                            input[i] = Convert.ToString(int.Parse(input[i]) + 1);
+                        }
+                    }
+
+                    // Check numbers from input after they have eaten and see if they meet the requirements
+                    if ((int.Parse(input[i]) >= query_out[j]))
+                    {
+                        output += input[i] + " ";
+                    }
+                }
+
+                // Split up queries
+                if (j < query_in.Length - 1)
+                {
+                    output += "| ";
+                }
+
+                // Reset input for next query
+                input = textBox_in.Text.Split();
             }
 
             // Send answer to output textbox
-            output = String.Join("", input);
             textBox_out.Text = output;
         }
     }
