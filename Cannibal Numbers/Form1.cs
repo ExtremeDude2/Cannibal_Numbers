@@ -28,7 +28,7 @@ namespace Cannibal_Numbers
                     // Parse input and check if next number can be "eaten"
                     for (int h = i; h < input.Length - 1; h++)
                     {
-                        if (int.Parse(input[i]) >= int.Parse(input[h + 1]))
+                        if (int.Parse(input[i]) > int.Parse(input[h + 1]))
                         {
                             input[i] = Convert.ToString(int.Parse(input[i]) + 1);
                         }
