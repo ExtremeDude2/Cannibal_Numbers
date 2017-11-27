@@ -37,14 +37,20 @@ namespace Cannibal_Numbers
                     // Check numbers from input after they have eaten and see if they meet the requirements
                     if ((int.Parse(input[i]) >= query_out[j]))
                     {
-                        output += input[i] + " ";
+                        output += input[i];
+
+                        // Space output
+                        if (i < input.Length - 1)
+                        {
+                            output += " ";
+                        }
                     }
                 }
 
                 // Split up queries
                 if (j < query_in.Length - 1)
                 {
-                    output += "| ";
+                    output += " | ";
                 }
 
                 // Reset input for next query
